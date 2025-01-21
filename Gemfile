@@ -70,3 +70,6 @@ end
 
 # Rails Tailwind CSS
 gem 'tailwindcss-rails', '~> 3.3'
+
+# Font Awesome Ruby gem
+gem "font-awesome-sass"
