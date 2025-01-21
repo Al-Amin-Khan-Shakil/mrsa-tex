@@ -53,6 +53,9 @@ group :development, :test do
 
   # Environment variable
   gem 'dotenv-rails'
+
+  # .html.erb formatter
+  gem 'htmlbeautifier'
 end
 
 group :development do
@@ -72,4 +75,4 @@ end
 gem 'tailwindcss-rails', '~> 3.3'
 
 # Font Awesome Ruby gem
-gem "font-awesome-sass"
+gem 'font-awesome-sass'
