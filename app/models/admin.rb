@@ -19,8 +19,14 @@ class Admin < ApplicationRecord
                       message: 'Must include at least one letter and one number' },
             if: :password_required?
   validates :profile_picture,
-            content_type: { in: %w[image/png image/jpg image/jpeg], message: 'Must be a PNG, JPG, or JPEG file.' },
-            size: { less_than: 2.megabytes, message: 'Image is too large (maximum size is 2MB).' }
+              content_type: {
+                in: %w[image/png image/jpg image/jpeg],
+                message: 'must be a PNG, JPG, or JPEG file.'
+              },
+              size: {
+                less_than: 2.megabytes,
+                message: 'is too large (maximum size is 2MB).'
+              }
 
   ROLES.each do |role_name|
     define_method "#{role_name.gsub(' ', '_')}?" do

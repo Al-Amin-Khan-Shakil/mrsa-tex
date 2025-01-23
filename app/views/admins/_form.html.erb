@@ -1,0 +1,51 @@
+<%= form_with model: @admin, local: true, class: "space-y-6 bg-white p-8 rounded-lg shadow-md" do |f| %>
+  <!-- First Name -->
+  <div>
+    <%= f.label :f_name, "First Name", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :f_name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "Enter first name" %>
+  </div>
+  <!-- Last Name -->
+  <div>
+    <%= f.label :l_name, "Last Name", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :l_name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "Enter last name" %>
+  </div>
+  <!-- Role -->
+  <div>
+    <%= f.label :role, "Role", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.select :role, Admin::ROLES.map { |role| [role.titleize, role] }, prompt: "Select role", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+  <!-- Gender -->
+  <div>
+    <%= f.label :gender, "Gender", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.select :gender, Admin::GENDERS.map { |gender| [gender.titleize, gender] }, prompt: "Select gender", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+  <!-- Profile Picture -->
+  <div>
+    <%= f.label :profile_picture, "Profile Picture", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.file_field :profile_picture, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+  <!-- Phone Number -->
+  <div>
+    <%= f.label :phone_number, "Phone Number", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :phone_number, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "+1234567890" %>
+  </div>
+  <!-- Email -->
+  <div>
+    <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.email_field :email, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "example@email.com" %>
+  </div>
+  <!-- Password -->
+  <div>
+    <%= f.label :password, "Password", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.password_field :password, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "Enter password" %>
+  </div>
+  <!-- Password Confirmation -->
+  <div>
+    <%= f.label :password_confirmation, "Password Confirmation", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.password_field :password_confirmation, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "Confirm password" %>
+  </div>
+  <!-- Submit Button -->
+  <div>
+    <%= f.submit class: "w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition" %>
+  </div>
+<% end %>

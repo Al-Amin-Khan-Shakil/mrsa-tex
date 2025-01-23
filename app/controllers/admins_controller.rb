@@ -42,6 +42,7 @@ class AdminsController < ApplicationController
     else
       @admin.destroy
       flash[notice] = 'Account was successfully deleted'
+      redirect_to admins_path
     end
   end
 
@@ -55,7 +56,7 @@ class AdminsController < ApplicationController
   end
 
   def admin_params
-    params.require(:admin).permit(:f_name, :l_name, :phone_number, :role, :gender, :email, :password,
+    params.require(:admin).permit(:f_name, :l_name, :phone_number, :role, :profile_picture, :gender, :email, :password,
                                   :password_confirmation)
   end
 end
