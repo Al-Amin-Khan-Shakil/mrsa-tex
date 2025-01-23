@@ -5,6 +5,7 @@ class CreateAdmins < ActiveRecord::Migration[7.1]
       t.string :l_name
       t.string :role
       t.string :gender
+      t.string :phone_number
 
       t.timestamps
     end

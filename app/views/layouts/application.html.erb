@@ -11,7 +11,11 @@
   </head>
   <body>
     <main>
-      <%= render "layouts/sidebar" %>
+      <% if admin_signed_in? %>
+        <%= render "layouts/sidebar" %>
+      <% else %>
+        <%= yield %>
+      <% end %>
     </main>
   </body>
 </html>
