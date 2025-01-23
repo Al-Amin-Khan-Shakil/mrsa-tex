@@ -1,6 +1,8 @@
 class Admin < ApplicationRecord
   devise :database_authenticatable, :recoverable, :validatable
 
+  has_one_attached :profile_picture
+
   ROLES = %w[super_admin admin manager staff].freeze
   GENDERS = %w[male female other].freeze
 
@@ -16,6 +18,9 @@ class Admin < ApplicationRecord
             format: { with: /\A(?=.*[a-zA-Z])(?=.*\d).+\z/,
                       message: 'Must include at least one letter and one number' },
             if: :password_required?
+  validates :profile_picture,
+            content_type: { in: %w[image/png image/jpg image/jpeg], message: 'Must be a PNG, JPG, or JPEG file.' },
+            size: { less_than: 2.megabytes, message: 'Image is too large (maximum size is 2MB).' }
 
   ROLES.each do |role_name|
     define_method "#{role_name.gsub(' ', '_')}?" do

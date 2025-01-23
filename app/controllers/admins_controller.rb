@@ -28,11 +28,11 @@ class AdminsController < ApplicationController
 
   def update
     if @admin.update(admin_params)
-      flash[:notice] = "Account was successfully updated."
+      flash[:notice] = 'Account was successfully updated.'
       redirect_to admin_path(@admin)
     else
-      flash.now[:alert] = @admin.errors.full_messages.to_sentence.
-      render :edit
+      flash.now[:alert] = @admin.errors.full_messages.to_sentence
+        .render :edit
     end
   end
 
@@ -55,6 +55,7 @@ class AdminsController < ApplicationController
   end
 
   def admin_params
-    params.require(:admin).permit(:f_name, :l_name, :phone_number, :role, :gender, :email, :password, :password_confirmation)
+    params.require(:admin).permit(:f_name, :l_name, :phone_number, :role, :gender, :email, :password,
+                                  :password_confirmation)
   end
 end

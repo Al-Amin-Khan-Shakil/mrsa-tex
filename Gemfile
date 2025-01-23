@@ -79,3 +79,6 @@ gem 'font-awesome-sass'
 
 # Devise for authentication
 gem 'devise'
+
+# Active Storage Validations Gem
+gem 'active_storage_validations'
