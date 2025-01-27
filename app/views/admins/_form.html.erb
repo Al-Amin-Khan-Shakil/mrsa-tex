@@ -1,4 +1,14 @@
 <%= form_with model: @admin, local: true, class: "space-y-6 bg-white p-8 rounded-lg shadow-md" do |f| %>
+  <% if @admin.errors.any? %>
+    <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+      <h3 class="font-semibold">There were errors with your submission:</h3>
+      <ul class="mt-2 list-disc list-inside">
+        <% @admin.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <!-- First Name -->
   <div>
     <%= f.label :f_name, "First Name", class: "block text-sm font-medium text-gray-700" %>

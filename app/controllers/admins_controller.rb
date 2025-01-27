@@ -32,7 +32,7 @@ class AdminsController < ApplicationController
       redirect_to admin_path(@admin)
     else
       flash.now[:alert] = @admin.errors.full_messages.to_sentence
-        .render :edit
+      render :edit
     end
   end
 
@@ -41,7 +41,7 @@ class AdminsController < ApplicationController
       flash[:alert] = 'You cannot delete your own account.'
     else
       @admin.destroy
-      flash[notice] = 'Account was successfully deleted'
+      flash[:notice] = 'Account was successfully deleted'
       redirect_to admins_path
     end
   end

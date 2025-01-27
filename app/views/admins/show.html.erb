@@ -1,16 +1,6 @@
 <div class="container mx-auto mt-10 max-w-4xl">
   <!-- Heading -->
   <h1 class="text-3xl font-extrabold text-indigo-600 mb-6">Admin Details</h1>
-  <!-- Flash Messages -->
-  <% if flash[:notice] %>
-    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 my-4 rounded">
-      <p><%= flash[:notice] %></p>
-    </div>
-  <% elsif flash[:alert] %>
-    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4 rounded">
-      <p><%= flash[:alert] %></p>
-    </div>
-  <% end %>
   <!-- Card -->
   <div class="bg-white shadow-md rounded-lg p-6">
     <div class="flex flex-col sm:flex-row items-center gap-6">
