@@ -45,8 +45,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_23_141614) do
   create_table "admins", force: :cascade do |t|
     t.string "f_name"
     t.string "l_name"
-    t.string "role"
-    t.string "gender"
+    t.integer "role", limit: 2
+    t.integer "gender", limit: 2
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

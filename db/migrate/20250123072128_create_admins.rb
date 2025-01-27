@@ -3,8 +3,8 @@ class CreateAdmins < ActiveRecord::Migration[7.1]
     create_table :admins do |t|
       t.string :f_name
       t.string :l_name
-      t.string :role
-      t.string :gender
+      t.integer :role, limit: 2
+      t.integer :gender, limit: 2
       t.string :phone_number
 
       t.timestamps

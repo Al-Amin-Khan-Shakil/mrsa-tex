@@ -12,12 +12,12 @@
   <!-- Role -->
   <div>
     <%= f.label :role, "Role", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.select :role, Admin::ROLES.map { |role| [role.titleize, role] }, prompt: "Select role", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+    <%= f.select :role, Admin::ROLES.map { |role, value| [role.to_s.titleize, value] }, prompt: "Select role", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
   </div>
   <!-- Gender -->
   <div>
     <%= f.label :gender, "Gender", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.select :gender, Admin::GENDERS.map { |gender| [gender.titleize, gender] }, prompt: "Select gender", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+    <%= f.select :gender, Admin::GENDERS.map { |gender, value| [gender.to_s.titleize, value] }, prompt: "Select gender", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
   </div>
   <!-- Profile Picture -->
   <div>
