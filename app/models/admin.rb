@@ -18,7 +18,7 @@ class Admin < ApplicationRecord
             format: {
               with: %r{\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/\\|-]).+\z},
               message: 'Password must include at least one uppercase letter, one lowercase letter,' \
-                       ' one number, and one special character (e.g., !@#$%^&*)'
+                       'one number, and one special character (e.g., !@#$%^&*)'
             },
             if: :password_required?
   validates :profile_picture,
