@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  get 'admins/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :admins, skip: [:registrations]
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  root "admins#index"
+  # Conditional root route
+  authenticated :admin do
+    root to: 'admins#index', as: :authenticated_root
+  end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  unauthenticated do
+    root to: 'dashboard#index', as: :unauthenticated_root
+  end
+
+  get 'dashboard/index'
+  resources :admins
 end

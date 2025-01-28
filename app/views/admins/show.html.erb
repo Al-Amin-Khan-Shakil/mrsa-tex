@@ -1,0 +1,48 @@
+<div class="container mx-auto mt-10 max-w-4xl">
+  <!-- Heading -->
+  <h1 class="text-3xl font-extrabold text-indigo-600 mb-6">Admin Details</h1>
+  <!-- Card -->
+  <div class="bg-white shadow-md rounded-lg p-6">
+    <div class="flex flex-col sm:flex-row items-center gap-6">
+      <!-- Profile Picture -->
+      <% if @admin.profile_picture.attached? %>
+        <img
+          src="<%= url_for(@admin.profile_picture) %>"
+          alt="<%= @admin.f_name %> <%= @admin.l_name %>"
+          class="h-32 w-32 rounded-full border-4 border-indigo-500 object-cover"
+        >
+        <% else %>
+          <div class="h-32 w-32 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold text-xl border-4 border-indigo-500">
+            N/A
+          </div>
+        <% end %>
+        <!-- Admin Details -->
+        <div class="flex-grow">
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">
+            <%= @admin.f_name %> <%= @admin.l_name %>
+          </h2>
+          <p class="text-sm text-gray-500 mb-4">Role: <span class="font-semibold text-indigo-600"><%= Admin::ROLES.key(@admin.role).to_s.titleize %></span></p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <p class="text-gray-700">
+              <span class="font-medium">Email:</span> <%= @admin.email %>
+            </p>
+            <p class="text-gray-700">
+              <span class="font-medium">Phone:</span> <%= @admin.phone_number %>
+            </p>
+            <p class="text-gray-700">
+              <span class="font-medium">Gender:</span> <%=Admin::GENDERS.key(@admin.gender).to_s.titleize %>
+            </p>
+            <p class="text-gray-700">
+              <span class="font-medium">Joined On:</span> <%= @admin.created_at.strftime("%B %d, %Y") %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="flex justify-between mt-6">
+      <%= link_to "Edit Admin", edit_admin_path(@admin), class: "bg-blue-500 text-white py-2 px-4 rounded shadow hover:bg-blue-600 transition" %>
+      <%= link_to "Back to Admins", admins_path, class: "bg-gray-500 text-white py-2 px-4 rounded shadow hover:bg-gray-600 transition" %>
+      <%= button_to "Delete Admin", admin_path(@admin), method: :delete, data: { confirm: "Are you sure you want to delete this admin?" }, class: "bg-red-500 text-white py-2 px-4 rounded shadow hover:bg-red-600 transition" %>
+    </div>
+  </div>

@@ -76,3 +76,9 @@ gem 'tailwindcss-rails', '~> 3.3'
 
 # Font Awesome Ruby gem
 gem 'font-awesome-sass'
+
+# Devise for authentication
+gem 'devise'
+
+# Active Storage Validations Gem
+gem 'active_storage_validations'
