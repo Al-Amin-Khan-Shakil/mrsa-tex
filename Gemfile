@@ -82,3 +82,6 @@ gem 'devise'
 
 # Active Storage Validations Gem
 gem 'active_storage_validations'
+
+# automatically generate url slugs
+gem 'friendly_id'

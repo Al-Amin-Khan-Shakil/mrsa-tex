@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
   resources :admins
-  resources :categories do
-    resources :subcategories, controller: 'categories'
+  resources :categories, param: :slug do
+    resources :subcategories, controller: 'categories', param: :slug
   end
 end
