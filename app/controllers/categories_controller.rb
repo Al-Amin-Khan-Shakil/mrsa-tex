@@ -10,9 +10,7 @@ class CategoriesController < ApplicationController
                   end
   end
 
-  def show
-
-  end
+  def show; end
 
   def new
     @category = @parent_category ? @parent_category.subcategories.new : Category.new
@@ -30,8 +28,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
