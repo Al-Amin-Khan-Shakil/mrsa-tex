@@ -1,0 +1,18 @@
+<h2 class="text-2xl font-semibold">Category: <%= @category.name %></h2>
+<% if @category.parent_category.present? %>
+  <p class="text-sm text-gray-500">Parent Category: <%= link_to @category.parent_category.name, category_path(@category.parent_category.slug) %></p>
+<% end %>
+<div class="mt-4">
+  <h3 class="text-xl font-semibold">Subcategories</h3>
+  <div class="mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @category.subcategories.each do |subcategory| %>
+      <div class="border p-4 rounded-lg shadow-sm hover:shadow-md transition duration-200">
+        <h4 class="text-lg font-bold">
+          <%= link_to subcategory.name, category_path(subcategory.slug), class: "text-blue-600" %>
+        </h4>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Edit Category', edit_category_path(@category.slug), class: "mt-4 bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" %>
+<%= button_to 'Delete Category', category_path(@category.slug), method: :delete, data: { confirm: "Are you sure?" }, class: "mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" %>

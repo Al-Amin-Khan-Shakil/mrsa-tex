@@ -1,0 +1,18 @@
+<% if @parent_category %>
+  <h2 class="text-xl font-semibold"> Subcategories of <%= @parent_category.name %></h2>
+  <%= link_to 'Back to Categories', categories_path, class: "text-blue-500 underline" %>
+<% else %>
+  <h2 class="text-xl font-semibold">Categories</h2>
+  <%= link_to "New Category", new_category_path, class: "mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+<% end %>
+<div class="mt-4 grid gird-cols-1 md:gird-cols-2 lg:grid-cols-3 gap-6">
+  <% @categories.each do |category| %>
+    <div class="border p-4 rounded-lg shadow-sm hover:shadow-md transition duration-200">
+      <h3 class="text-lg font-bold">
+        <%= link_to category.name, category_path(category.slug), class: "text-blue-600" %>
+      </h3>
+      <p class="text-sm text-gray-500">Subcategories: <%= category.subcategories.count %></p>
+      <%= link_to "New Sub-category", new_category_subcategory_path(category.slug), class: "mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+    </div>
+  <% end %>
+</div>

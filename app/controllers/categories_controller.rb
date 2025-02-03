@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destory]
+  before_action :set_category, only: %i[show edit update destroy]
   before_action :set_parent_category, only: %i[new create index]
 
   def index
@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+
   end
 
   def new
@@ -18,7 +19,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = @parent_category ? @parent_category.subcategories.new(category_params)
+    @category = @parent_category ? @parent_category.subcategories.new(category_params) : Category.new(category_params)
 
     if @category.save
       flash[:notice] = 'Category created successfully.'
