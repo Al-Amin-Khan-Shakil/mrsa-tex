@@ -27,13 +27,14 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(
       :name,
+      :slug,
       :category_id,
       :description,
       :price,
       :stock,
       images: [],
-      variant_names_attributes: [:id, :name, :product_id, :_destroy,
-                                 { variant_values_attributes: %i[id value price stock variant_name_id image _destroy] }]
+      variant_names_attributes: [:id, :name, :slug, :product_id, :_destroy,
+                                 { variant_values_attributes: %i[id value slug price stock variant_name_id image _destroy] }]
     )
   end
 end

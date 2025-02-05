@@ -3,6 +3,7 @@ class VariantValue < ApplicationRecord
   friendly_id :variant_value_slug_candidates, use: :slugged
 
   belongs_to :variant_name
+  has_one :product, through: :variant_name
 
   has_one_attached :image
 
@@ -11,7 +12,11 @@ class VariantValue < ApplicationRecord
   validates :stock, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def variant_value_slug_candidates
-    ["#{product.name}-#{variant_value.name}-#{value}"]
+    if variant_name&.product
+      ["#{variant_name.product.name}-#{variant_name.name}-#{value}"]
+    else
+      ["#{variant_name&.name}-#{value}"]
+    end
   end
 
   def should_generate_new_friendly_id
