@@ -1,0 +1,82 @@
+<%= form_with model: @product, local: true, class: "space-y-6" do |form| %>
+  <!-- Product Basic Fields -->
+  <div class="field">
+    <%= form.label :name, class: "block text-lg font-medium text-gray-700" %>
+    <%= form.text_field :name, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+  <div>
+    <%= form.label :description, class: "block text-lg font-medium text-gray-700" %>
+    <%= form.text_area :description, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+  <div>
+    <%= form.label :price, class: "block text-lg font-medium text-gray-700" %>
+    <%= form.number_field :price, step: 0.01, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+  <div>
+    <%= form.label :category_id, class: "block text-lg font-medium text-gray-700" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+  <div>
+    <%= form.label :images, class: "block text-lg font-medium text-gray-700" %>
+    <%= form.file_field :images, multiple: true, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+    <div class="mt-2">
+      <p class="font-medium text-gray-600">Existing Images:</p>
+      <div class="flex space-x-2 mt-2">
+        <% @product.images.each do |image| %>
+          <div class="relative">
+            <%= image_tag image, class: "h-20 w-20 object-cover rounded-md" %>
+            <%= link_to "Remove", remove_image_product_path(@product, image.signed_id), method: :delete, data: { confirm: "Are you sure?" }, class: "absolute top-0 right-0 bg-red-500 text-white px-1 rounded-full text-xs" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= form.label :stock, class: "block text-lg font-medium text-gray-700" %>
+    <%= form.number_field :stock, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+  <!-- Variant Names and Their Values -->
+  <div class="fields space-y-4" id="variant_names">
+    <%= form.fields_for :variant_names do |vn_form| %>
+      <div class="variant-name-fields space-y-4 p-4 border border-gray-300 rounded-lg bg-gray-50" data-variant-name-id="<%= vn_form.index %>">
+        <%= vn_form.hidden_field :id %>
+        <div class="field">
+          <%= vn_form.label :name, "Variant Name", class: "block text-sm font-medium text-gray-700" %>
+          <%= vn_form.text_field :name, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+          <%= vn_form.hidden_field :_destroy, class: "destroy-field" %>
+        </div>
+        <div class="variant_values space-y-4" id="variant_values_<%= vn_form.index %>">
+          <%= vn_form.fields_for :variant_values do |vv_form| %>
+            <div class="variant-value-fields space-y-4 p-4 border border-gray-300 rounded-lg bg-gray-50" data-variant-value-id="<%= vv_form.index %>">
+              <%= vv_form.hidden_field :id %>
+              <div class="variant-value-container border p-4 rounded-md shadow-md bg-gray-100">
+                <div class="field">
+                  <%= vv_form.label :value, "Variant Value", class: "block text-sm font-medium text-gray-700" %>
+                  <%= vv_form.text_field :value, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+                </div>
+                <div class="field">
+                  <%= vv_form.label :price, class: "block text-sm font-medium text-gray-700" %>
+                  <%= vv_form.number_field :price, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+                </div>
+                <div class="field">
+                  <%= vv_form.label :stock, class: "block text-sm font-medium text-gray-700" %>
+                  <%= vv_form.number_field :stock, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+                </div>
+                <div class="field">
+                  <%= vv_form.label :image, class: "block text-sm font-medium text-gray-700" %>
+                  <%= vv_form.file_field :image, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+                </div>
+                <%= vv_form.hidden_field :_destroy, class: "destroy-field" %>
+                <a href="#" class="remove-variant-value inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mt-2">Remove Value</a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <a href="#" class="add-variant-value inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Add Value</a>
+        <a href="#" class="remove-variant-name inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Remove Variant</a>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'Add Variant', '#', id: 'add-variant-name', class: 'inline-block bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600' %>
+  <%= form.submit 'Save Product', class: 'mt-4 inline-block bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600' %>
+<% end %>
