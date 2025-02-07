@@ -18,18 +18,16 @@
   </div>
   <div>
     <%= form.label :images, class: "block text-lg font-medium text-gray-700" %>
-    <%= form.file_field :images, multiple: true, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
-    <div class="mt-2">
-      <p class="font-medium text-gray-600">Existing Images:</p>
-      <div class="flex space-x-2 mt-2">
+    <% if @product.images.attached? %>
+      <div class="mt-2 space-y-2">
         <% @product.images.each do |image| %>
-          <div class="relative">
-            <%= image_tag image, class: "h-20 w-20 object-cover rounded-md" %>
-            <%= link_to "Remove", remove_image_product_path(@product, image.signed_id), method: :delete, data: { confirm: "Are you sure?" }, class: "absolute top-0 right-0 bg-red-500 text-white px-1 rounded-full text-xs" %>
+          <div class="flex items-center space-x-2">
+            <%= image_tag image, class: "w-20 h-20 object-cover rounded-md" %>
           </div>
         <% end %>
       </div>
-    </div>
+    <% end %>
+    <%= form.file_field :images, multiple: true, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
   </div>
   <div>
     <%= form.label :stock, class: "block text-lg font-medium text-gray-700" %>

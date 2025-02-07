@@ -29,7 +29,13 @@ class ProductsController < ApplicationController
   def update
     @product = Product.includes(variant_names: :variant_values).friendly.find(params[:slug])
 
-    if @product.update(product_params)
+    if @product.update(product_params.except(:images))
+      if product_params[:images].present?
+        product_params[:images].each do |image|
+          @product.images.attach(image)
+        end
+      end
+
       redirect_to @product, notice: "Product was successfully updated."
     else
       render :edit, status: :unprocessable_entity
