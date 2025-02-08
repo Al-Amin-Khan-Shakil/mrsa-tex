@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function () {
+document.addEventListener("turbo:render", function () {
   const variantNamesDiv = document.getElementById("variant_names");
   const addVariantNameButton = document.getElementById("add-variant-name");
 
