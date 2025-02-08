@@ -15,4 +15,9 @@ Rails.application.routes.draw do
   resources :categories, param: :slug do
     resources :subcategories, controller: 'categories', param: :slug
   end
+  resources :products, param: :slug do
+    resources :variant_names, only: [] do
+      resources :variant_values, only: []
+    end
+  end
 end
