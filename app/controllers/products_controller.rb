@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
         end
       end
 
-      redirect_to @product, notice: "Product was successfully updated."
+      redirect_to @product, notice: 'Product was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.friendly.find(params[:slug])
     @product.destroy
-    redirect_to products_path, notice: "Product was successfully deleted."
+    redirect_to products_path, notice: 'Product was successfully deleted.'
   end
 
   private
