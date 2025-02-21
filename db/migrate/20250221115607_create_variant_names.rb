@@ -1,9 +1,9 @@
 class CreateVariantNames < ActiveRecord::Migration[7.1]
   def change
-    create_table :variant_names do |t|
+    create_table :variant_names, id: :uuid do |t|
       t.string :name
       t.string :slug
-      t.references :product, null: false, foreign_key: true
+      t.references :product, null: false, foreign_key: true, type: :uuid
 
       t.timestamps
     end
