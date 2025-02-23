@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'districts/index'
+  get 'districts/show'
+  get 'districts/new'
+  get 'districts/edit'
   devise_for :admins, skip: [:registrations]
 
   # Conditional root route
