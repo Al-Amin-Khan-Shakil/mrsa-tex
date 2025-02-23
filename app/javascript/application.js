@@ -3,3 +3,4 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "flowbite";
 import "./product/nested_variants";
+import "./district/nested_sub_district";

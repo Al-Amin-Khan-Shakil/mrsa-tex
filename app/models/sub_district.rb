@@ -1,5 +1,5 @@
 class SubDistrict < ApplicationRecord
-  belongs_to :District
+  belongs_to :district
 
   validates :name, presence: true
 end
