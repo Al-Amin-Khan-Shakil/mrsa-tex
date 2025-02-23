@@ -14,7 +14,7 @@ document.addEventListener("turbo:render", function () {
           ?.addEventListener("click", function (e) {
             e.preventDefault();
             const destroyField = subDistrictDiv.querySelector(
-              "[name$ = '[_destroy]']"
+              "[name$= '[_destroy]']"
             );
             destroyField.value = "true";
             subDistrictDiv.style.display = "none";
