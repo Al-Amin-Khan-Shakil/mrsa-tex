@@ -45,48 +45,50 @@ document.addEventListener("turbo:render", function () {
   }
 
   // Add Variant Name
-  addVariantNameButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    const timestamp = Date.now(); // Unique ID for new variant name
-    const newVariantNameFields = document.createElement("div");
-    newVariantNameFields.classList.add(
-      "variant-name-fields",
-      "space-y-4",
-      "p-4",
-      "border",
-      "border-gray-300",
-      "rounded-lg",
-      "bg-gray-50"
-    );
-    newVariantNameFields.setAttribute("data-variant-name-id", timestamp);
+  if (addVariantNameButton) {
+    addVariantNameButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      const timestamp = Date.now(); // Unique ID for new variant name
+      const newVariantNameFields = document.createElement("div");
+      newVariantNameFields.classList.add(
+        "variant-name-fields",
+        "space-y-4",
+        "p-4",
+        "border",
+        "border-gray-300",
+        "rounded-lg",
+        "bg-gray-50"
+      );
+      newVariantNameFields.setAttribute("data-variant-name-id", timestamp);
 
-    newVariantNameFields.innerHTML = `
-      <input type="hidden" name="product[variant_names_attributes][${timestamp}][id]" id="product_variant_names_attributes_${timestamp}_id">
-      <div class="field">
-        <label for="product_variant_names_attributes_${timestamp}_name" class="block text-sm font-medium text-gray-700">Variant Name</label>
-        <input type="text" name="product[variant_names_attributes][${timestamp}][name]" id="product_variant_names_attributes_${timestamp}_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-        <input type="hidden" name="product[variant_names_attributes][${timestamp}][_destroy]" class="destroy-field" value="false">
-      </div>
-      <div class="variant_values space-y-4" id="variant_values_${timestamp}"></div>
-      <a href="#" class="add-variant-value inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Add Value</a>
-      <a href="#" class="remove-variant-name inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Remove Variant</a>
-    `;
+      newVariantNameFields.innerHTML = `
+        <input type="hidden" name="product[variant_names_attributes][${timestamp}][id]" id="product_variant_names_attributes_${timestamp}_id">
+        <div class="field">
+          <label for="product_variant_names_attributes_${timestamp}_name" class="block text-sm font-medium text-gray-700">Variant Name</label>
+          <input type="text" name="product[variant_names_attributes][${timestamp}][name]" id="product_variant_names_attributes_${timestamp}_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <input type="hidden" name="product[variant_names_attributes][${timestamp}][_destroy]" class="destroy-field" value="false">
+        </div>
+        <div class="variant_values space-y-4" id="variant_values_${timestamp}"></div>
+        <a href="#" class="add-variant-value inline-block bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Add Value</a>
+        <a href="#" class="remove-variant-name inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Remove Variant</a>
+      `;
 
-    variantNamesDiv.appendChild(newVariantNameFields);
-    setupVariantValueAddRemove(newVariantNameFields, timestamp);
+      variantNamesDiv.appendChild(newVariantNameFields);
+      setupVariantValueAddRemove(newVariantNameFields, timestamp);
 
-    // Initialize remove functionality for the new variant name
-    newVariantNameFields
-      .querySelector(".remove-variant-name")
-      ?.addEventListener("click", function (e) {
-        e.preventDefault();
-        const destroyField = newVariantNameFields.querySelector(
-          "[name$='[_destroy]']"
-        );
-        destroyField.value = "true"; // Mark for deletion
-        newVariantNameFields.style.display = "none"; // Hide the field
-      });
-  });
+      // Initialize remove functionality for the new variant name
+      newVariantNameFields
+        .querySelector(".remove-variant-name")
+        ?.addEventListener("click", function (e) {
+          e.preventDefault();
+          const destroyField = newVariantNameFields.querySelector(
+            "[name$='[_destroy]']"
+          );
+          destroyField.value = "true"; // Mark for deletion
+          newVariantNameFields.style.display = "none"; // Hide the field
+        });
+    });
+  }
 
   // Add Variant Value
   function setupVariantValueAddRemove(variantNameDiv, variantNameId) {

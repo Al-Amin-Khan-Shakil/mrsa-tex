@@ -1,0 +1,13 @@
+<div>
+  <%= form_with model: @district, local: true, class: "space-y-6" do |form| %>
+    <div class="field">
+      <%= form.label :name, class: "block text-lg font-medium text-gray-700" %>
+      <%= form.text_field :name, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+    </div>
+    <div class="fields space-y-4" id="sub_districts">
+      <!-- No initial sub_districts fields, these will be added dynamically -->
+    </div>
+    <%= link_to 'Add Sub-District',  '#', id: 'add-sub-district', class: 'inline-block bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600' %>
+    <%= form.submit 'Create District', class: 'mt-4 inline-block bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600' %>
+  <% end %>
+</div>

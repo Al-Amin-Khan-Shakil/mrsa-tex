@@ -20,4 +20,7 @@ Rails.application.routes.draw do
       resources :variant_values, only: []
     end
   end
+  resources :districts do
+    resources :sub_districts, only: []
+  end
 end
