@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'districts/index'
-  get 'districts/show'
-  get 'districts/new'
-  get 'districts/edit'
   devise_for :admins, skip: [:registrations]
 
   # Conditional root route
@@ -23,5 +19,8 @@ Rails.application.routes.draw do
     resources :variant_names, only: [] do
       resources :variant_values, only: []
     end
+  end
+  resources :districts do
+    resources :sub_districts, only: []
   end
 end
