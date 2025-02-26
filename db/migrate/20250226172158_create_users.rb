@@ -1,6 +1,6 @@
-class CreateAdmins < ActiveRecord::Migration[7.1]
+class CreateUsers < ActiveRecord::Migration[7.1]
   def change
-    create_table :admins, id: :uuid do |t|
+    create_table :users, id: :uuid do |t|
       t.string :f_name
       t.string :l_name
       t.integer :role, limit: 2
