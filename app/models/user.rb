@@ -1,9 +1,9 @@
-class Admin < ApplicationRecord
+class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :validatable
 
   has_one_attached :profile_picture
 
-  ROLES = { super_admin: 1, admin: 2, manager: 3, staff: 4 }.freeze
+  ROLES = { super_admin: 1, admin: 2, manager: 3, staff: 4, user: 5 }.freeze
   GENDERS = { male: 1, female: 2, other: 3 }.freeze
 
   validates :f_name, presence: true, length: { maximum: 50 }

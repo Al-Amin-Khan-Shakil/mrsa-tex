@@ -4,7 +4,6 @@ class CreateCategories < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :slug
       t.uuid :parent_id
-
       t.timestamps
     end
   end

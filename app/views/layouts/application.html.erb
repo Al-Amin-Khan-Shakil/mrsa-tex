@@ -11,7 +11,7 @@
   </head>
   <body>
     <main>
-      <% if admin_signed_in? %>
+      <% if user_signed_in? %>
         <%= render "layouts/sidebar" %>
       <% else %>
         <%= yield %>

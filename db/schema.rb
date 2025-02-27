@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_23_055619) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_27_051648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -43,23 +43,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_23_055619) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admins", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "f_name"
-    t.string "l_name"
-    t.integer "role", limit: 2
-    t.integer "gender", limit: 2
-    t.string "phone_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -84,7 +67,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_23_055619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "sub_districts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -93,6 +75,23 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_23_055619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["district_id"], name: "index_sub_districts_on_district_id"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "f_name"
+    t.string "l_name"
+    t.integer "role", limit: 2
+    t.integer "gender", limit: 2
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "variant_names", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

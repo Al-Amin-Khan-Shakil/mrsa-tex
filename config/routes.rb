@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admins, skip: [:registrations]
+  devise_for :users, skip: [:registrations]
 
   # Conditional root route
-  authenticated :admin do
-    root to: 'admins#index', as: :authenticated_root
+  authenticated :user do
+    root to: 'users#index', as: :authenticated_root
   end
 
   unauthenticated do
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   get 'dashboard/index'
-  resources :admins
+  resources :users
   resources :categories, param: :slug do
     resources :subcategories, controller: 'categories', param: :slug
   end
