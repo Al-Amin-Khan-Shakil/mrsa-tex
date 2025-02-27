@@ -9,11 +9,11 @@ class UsersController < ApplicationController
   def show; end
 
   def new
-    @users = User.new
+    @user = User.new
   end
 
   def create
-    @users = User.new(admin_params)
+    @user = User.new(user_params)
 
     if @user.save
       flash[:notice] = 'Account was successfully created.'
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    if @user.update(admin_params)
+    if @user.update(user_params)
       flash[:notice] = 'Account was successfully updated.'
       redirect_to user_path(@user)
     else
@@ -55,8 +55,8 @@ class UsersController < ApplicationController
     render action_name
   end
 
-  def admin_params
+  def user_params
     params.require(:user).permit(:f_name, :l_name, :phone_number, :role, :profile_picture, :gender, :email, :password,
-                                  :password_confirmation)
+                                 :password_confirmation)
   end
 end
