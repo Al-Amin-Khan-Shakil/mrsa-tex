@@ -12,4 +12,9 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
   resources :admins
+  namespace :admin do
+    resources :categories do
+      resources :subcategories, controller: 'categories'
+    end
+  end
 end

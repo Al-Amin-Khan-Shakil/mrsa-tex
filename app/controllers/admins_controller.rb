@@ -19,6 +19,7 @@ class AdminsController < ApplicationController
       flash[:notice] = 'Account was successfully created.'
       redirect_to @admin
     else
+      puts @admin.errors.full_messages # Debug output
       flash.now[:alert] = @admin.errors.full_messages.to_sentence
       render :new
     end
