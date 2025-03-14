@@ -1,4 +1,5 @@
 <h2 class="text-2xl font-semibold">Category: <%= @admin_category.name %></h2>
+<p class="text-orange-500">Slug: <%= @admin_category.slug %><p>
 <% if @admin_category.parent_id.nil? %>
   <%= link_to "New Sub-category", new_admin_category_subcategory_path(@admin_category.id), class: "mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
 <% end %>
