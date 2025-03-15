@@ -1,3 +1,4 @@
+<%=image_tag @admin_category.image.attached? ? @admin_category.image : "https://placehold.co/150" %>
 <h2 class="text-2xl font-semibold">Category: <%= @admin_category.name %></h2>
 <p class="text-orange-500">Slug: <%= @admin_category.slug %><p>
 <% if @admin_category.parent_id.nil? %>
