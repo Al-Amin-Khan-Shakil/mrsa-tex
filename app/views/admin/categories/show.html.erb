@@ -1,0 +1,25 @@
+<%=image_tag @admin_category.image.attached? ? @admin_category.image : "https://placehold.co/150" %>
+<h2 class="text-2xl font-semibold">Category: <%= @admin_category.name %></h2>
+<p class="text-orange-500">Slug: <%= @admin_category.slug %><p>
+<% if @admin_category.parent_id.nil? %>
+  <%= link_to "New Sub-category", new_admin_category_subcategory_path(@admin_category.id), class: "mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+<% end %>
+<% if @admin_category.parent_category.present? %>
+  <p class="text-sm text-gray-500">Parent Category: <%= link_to @admin_category.parent_category.name, admin_category_path(@admin_category.parent_category.id), class: "text-blue-500" %></p>
+<% end %>
+<div class="mt-4">
+  <h3 class="text-xl font-semibold">Subcategories</h3>
+  <div class="mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @admin_category.subcategories.each do |subcategory| %>
+      <div class="border p-4 rounded-lg shadow-sm hover:shadow-md transition duration-200">
+        <h4 class="text-lg font-bold">
+          <%= link_to subcategory.name, admin_category_path(subcategory.id), class: "text-blue-600" %>
+        </h4>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= link_to "Edit this category", edit_admin_category_path(@admin_category.id), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+<%= link_to "Back to categories", admin_categories_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+<div class="inline-block ml-2">
+  <%= button_to "Destroy this category", admin_category_path(@admin_category.id), method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium" %>
