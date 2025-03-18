@@ -39,7 +39,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def set_admin_product
-    @admin_product = Product.find(params[:id])
+    @admin_product = Product.find_by!(id: params[:id])
   end
 
   def admin_product_params
