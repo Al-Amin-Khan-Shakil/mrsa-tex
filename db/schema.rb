@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_26_160420) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_26_162737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -116,9 +116,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_26_160420) do
     t.index ["slug"], name: "index_variant_names_on_slug", unique: true
   end
 
+  create_table "variant_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "vlaue"
+    t.string "slug"
+    t.decimal "price"
+    t.integer "stock"
+    t.uuid "variant_name_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_variant_values_on_slug", unique: true
+    t.index ["variant_name_id"], name: "index_variant_values_on_variant_name_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admin_products", "categories"
   add_foreign_key "products", "categories"
   add_foreign_key "variant_names", "products"
+  add_foreign_key "variant_values", "variant_names"
 end

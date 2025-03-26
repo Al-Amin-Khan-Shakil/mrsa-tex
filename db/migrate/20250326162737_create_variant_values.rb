@@ -1,0 +1,14 @@
+class CreateVariantValues < ActiveRecord::Migration[7.1]
+  def change
+    create_table :variant_values, id: :uuid do |t|
+      t.string :vlaue
+      t.string :slug
+      t.decimal :price
+      t.integer :stock
+      t.references :variant_name, null: false, foreign_key: true, type: :uuid
+
+      t.timestamps
+    end
+    add_index :variant_values, :slug, unique: true
+  end
+end
