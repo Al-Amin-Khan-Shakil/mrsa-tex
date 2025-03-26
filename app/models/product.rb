@@ -3,8 +3,11 @@ class Product < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :category
+  has_many :variant_names, dependent: :destroy
 
   has_many_attached :images
+
+  accepts_nested_attributes_for :variant_names, allow_destroy: true
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }

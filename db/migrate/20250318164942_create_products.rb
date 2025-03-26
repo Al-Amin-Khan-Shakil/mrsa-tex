@@ -10,5 +10,6 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.references :category, null: false, foreign_key: true, type: :uuid
       t.timestamps
     end
+    add_index :products, :slug, unique: true
   end
 end
